@@ -14,44 +14,42 @@
 
 
 <script type="text/javascript">
-
 $(document).ready(function(){
-$("#tabsholder").tytabs({
-		tabinit:"1",
-		fadespeed:"fast"
-	});
-	$("#typed").typed({
-		stringsElement: $('#typed-strings'),
-		typeSpeed: 100,
-		backDelay: 500,
-		loop: false,
-		contentType: 'html', // or text
-		loopCount: false,
-	});
+    $("#tabsholder").tytabs({
+        tabinit:"1",
+        fadespeed:"fast"
+    });
+    $("#typed").typed({
+        stringsElement: $('#typed-strings'),
+        typeSpeed: 100,
+        backDelay: 500,
+        loop: false,
+        contentType: 'html', // or text
+        loopCount: false,
+    });
 
-	$(".reset").click(function(){
-		$("#typed").typed('reset');
-	});
+    $(".reset").click(function(){
+        $("#typed").typed('reset');
+    });
 	
-	var data = '{"CompanyId": "GoldenCasket"}' ;
+    var data = '{"CompanyId": "GoldenCasket"}' ;
     jQuery.post("https://data.api.thelott.com/sales/vmax/web/data/lotto/luckylotteries/currentdraw",
     data,
     function(data, status){
 	
-      var date_super = new Date(data.CurrentDraws[0].DrawDate).toDateString();
-	  console.log(date_super);
-      var date_mega = new Date(data.CurrentDraws[1].DrawDate).toDateString();
+        var date_super = new Date(data.CurrentDraws[0].DrawDate).toDateString();
+        var date_mega = new Date(data.CurrentDraws[1].DrawDate).toDateString();
 	  
-      $("#DisplayNamesuper").text('Current Jackpot Over $'+ data.CurrentDraws[0].Div1Amount + '*');
-      $("#DrawNumbersuper").text(data.CurrentDraws[0].DrawNumber);
-      $("#DrawDatesuper").text(date_super);
+        $("#DisplayNamesuper").text('Current Jackpot Over $'+ data.CurrentDraws[0].Div1Amount + '*');
+        $("#DrawNumbersuper").text(data.CurrentDraws[0].DrawNumber);
+        $("#DrawDatesuper").text(date_super);
 
-      $("#DisplayNamemega").text('Current Jackpot Over $'+ data.CurrentDraws[1].Div1Amount + '*');
-	  $("#DrawNumbermega").text(data.CurrentDraws[1].DrawNumber);
-      $("#DrawDatemega").text(date_mega);
+        $("#DisplayNamemega").text('Current Jackpot Over $'+ data.CurrentDraws[1].Div1Amount + '*');
+	$("#DrawNumbermega").text(data.CurrentDraws[1].DrawNumber);
+        $("#DrawDatemega").text(date_mega);
 	  
-	  $(".superamount").countTo(data.CurrentDraws[0].Div1Amount, {"duration": 1}).after( "<b>*</b>" ).before( "<b> Current Jackpot Over $</b>" );
-	  $(".megaamount").countTo(data.CurrentDraws[1].Div1Amount, {"duration": 1}).after( "<b>*</b>" ).before( "<b> Current Jackpot Over $</b>" );
+	$(".superamount").countTo(data.CurrentDraws[0].Div1Amount, {"duration": 1}).after( "<b>*</b>" ).before( "<b> Current Jackpot Over $</b>" );
+	$(".megaamount").countTo(data.CurrentDraws[1].Div1Amount, {"duration": 1}).after( "<b>*</b>" ).before( "<b> Current Jackpot Over $</b>" );
 	  
     });
 	
@@ -61,30 +59,30 @@ $("#tabsholder").tytabs({
 </head>
 
 <body>
-<div class="container">
-	<div class="white-box">
+    <div class="container">
+            <div class="white-box">
 		<div class="title" id="typed-strings"><span>Play Lucky Lotteries</span></div>
-        <div id="typed" style="display:inline-block;"></div> 
-        <div id="tabsholder">
-        <ul class="tabs">
-            <li id="tab1"><img src="imgs/logo--lkytab-super@2x.png" /></li>
-            <li id="tab2" class="megatab"><img src="imgs/logo--lkytab-mega@2x.png" /></li>
-        </ul>
-        <div class="contents marginbot">
-            <div id="content1" class="tabscontent">
+                <div id="typed" style="display:inline-block;"></div> 
+                <div id="tabsholder">
+                    <ul class="tabs">
+                        <li id="tab1"><img src="imgs/logo--lkytab-super@2x.png" /></li>
+                        <li id="tab2" class="megatab"><img src="imgs/logo--lkytab-mega@2x.png" /></li>
+                    </ul>
+                    <div class="contents marginbot">
+                        <div id="content1" class="tabscontent">
 				<h2><span id="DisplayNamesuper" class="superamount badge"><span></h2>
-                <p>Current Draw:</p>
-                <p><strong>Draw No. <span id="DrawNumbersuper"></span></strong><span class="vertical-bar"> | </span> <span class="draw-date" id="DrawDatesuper"></span></p>
-                <span class="sold"><span class="large-text">HURRY</span>NEARLY SOLD OUT</span>
+                                <p>Current Draw:</p>
+                                <p><strong>Draw No. <span id="DrawNumbersuper"></span></strong><span class="vertical-bar"> | </span> <span class="draw-date" id="DrawDatesuper"></span></p>
+                                <span class="sold"><span class="large-text">HURRY</span>NEARLY SOLD OUT</span>
 			</div>
 			<div id="content2" class="tabscontent">
 				<h2><span id="DisplayNamemega" class="megaamount badge"><span></h2>
-                <p>Current Draw:</p>
-                <p><strong>Draw No. <span id="DrawNumbermega"></span></strong><span class="vertical-bar"> | </span> <span class="draw-date" id="DrawDatemega"></span></p>
+                                <p>Current Draw:</p>
+                                <p><strong>Draw No. <span id="DrawNumbermega"></span></strong><span class="vertical-bar"> | </span> <span class="draw-date" id="DrawDatemega"></span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
     </div>
-    </div>
-</div>
 </body>
 </html>
